@@ -59,14 +59,23 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>open -a emacs --args --eval="(progn
-                               (switch-to-buffer \"*scratch*\")
-                               (add-hook
-                                 'kill-emacs-hook
-                                 (lambda ()
-                                   (clipboard-kill-ring-save
-                                     (point-min)
-                                     (point-max)))))"</string>
+					<string>open -na emacs --args --eval="
+(progn
+  (defun ea-clipboard-save ()
+    (clipboard-kill-ring-save
+     (point-min)
+     (point-max)))
+  (defun ea-hook-clipboard-save ()
+    (add-hook 'kill-emacs-hook 'ea-clipboard-save))
+  (defun ea-unhook-clipboard-save ()
+    (remove-hook 'kill-emacs-hook 'ea-clipboard-save))
+  (defun ea-clipboard ()
+    (interactive)
+    (if (y-or-n-p \"Copy buffer to clipboard on kill-emacs? \")
+        (ea-hook-clipboard-save)
+      (ea-unhook-clipboard-save)))
+  (ea-hook-clipboard-save)
+  (switch-to-buffer \"*scratch*\"))"</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
@@ -176,12 +185,10 @@
 						<string>4</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>309.000000:253.000000</string>
+				<string>309.000000:410.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/English.lproj/main.nib</string>
 			</dict>
