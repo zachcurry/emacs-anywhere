@@ -1,41 +1,44 @@
 <p align="center">
-  <img src="https://imgur.com/KEvaVTP.jpg"></img>
+  <img src="https://imgur.com/KEvaVTP.jpg" width="250px"></img>
 </p>
 <p align="center">
   <em>Inspired by</em>
   <a href="https://github.com/cknadler/vim-anywhere">cknadler/vim-anywhere</a>
 </p>
-<p align="center">
-  <img src="https://thumbs.gfycat.com/DefiantMindlessLangur-size_restricted.gif"></img>
+
+<p>
+  <img align="right" src="https://thumbs.gfycat.com/PlumpDeadlyAlpinegoat-size_restricted.gif" width="500px"></img>
+  <h2>What it does</h2>
+  A keyboard shortcut, of your choosing, creates a temporary frame and buffer. The text is auto-magically injected into the application your using. Bust your E-moves on-the-fly, with fewer keystrokes. Invoke with selected text and it will auto-magically be replaced.
+</p
+
+<p>
+  <img align="right" src="https://imgur.com/NqJWBxD.jpg" width="500"></img>
+  <h2>Install</h2>
+  <ol>
+    <li><a href="https://raw.githubusercontent.com/zachcurry/emacs-anywhere/master/Emacs%20Anywhere.dmg">Download the installer</a></li>
+    <li>Drag and drop</li>
+    <li>Add keyboard shortcut</li>
+  </ol>
 </p>
 
+## How to ##
+If your Emacs server is not running, Emacs Anywhere will start it before it opens the new, temporary frame. The frame is always opened to an empty buffer initially. When you delete the frame, the buffer's content is auto-magically injected into the application you are using, and the buffer is deleted. Any text selected when the keyboard shortcut is invoked will be replaced.
 
-## What it does ##
-Emacs Anywhere launches a throw-away Emacs process, copies the current buffer to your clipboard on exit, making it easy to    input superior text into an inferior application. Currently available for GNU Emacs on OSX.
+**YOU DO NOT NEED TO EDIT TO YOUR `init.el`**!
 
-## Install ##
-1. Copy `emacs_anywhere.workflow` to `~/Library/Services`
-2. Create keyboard shortcut `Keyboard->Shortcuts->Services->emacs_anywhere`. Consider using <kbd>&#x21E7;</kbd> <kbd>&#8984;</kbd> <kbd>Space</kbd> if you bust your moves in evil-mode :metal:
+**Update** by downloading the latest installer, drag and drop.
 
-Note: Emacs must be installed such that running `open -a emacs` in the terminal launches Emacs.
+**Uninstall** by removing `Emacs Anywhere.workflow` in `~/Library/Services`. Emacs Anywhere does not modify any file on your machine. No mess.
 
-## How it works ##
-It's an OS X service you map to a keyboard shortcut. It runs a bash script to open Emacs with a touch of elisp passed in via `--eval` command line option.
+Quit a running service by clicking the spinning cog in the taskbar and invoking the `ea-clipboard` command from Emacs.
 
-:sparkles:
-```elisp
-(progn
-  (switch-to-buffer "*scratch*")
-  (add-hook
-    'kill-emacs-hook
-    (lambda ()
-      (clipboard-kill-ring-save
-        (point-min)
-        (point-max)))))
-```
-:sparkles:
+## Issues? ##
+If your Emacs server isn't running when you use the keyboard shortcut, Emacs Anywhere will start it, but it makes the launch process much slower. Run Emacs as a daemon like this `emacs --daemon` to start your server from the command line, or use `server-start` command via Emacs. When the server is running, the new frame launches *real* fast.
 
-The implementation is so tiny it barely warrants a repository! It's just one service, wrapping one bash command, wrapping one sexp :neutral_face:
+If it's not working at all, make sure `emacs` and `emacsclient` are on your `PATH`. Having both executables in `/usr/local/bin` should work without issue.
 
-## Inspiration ##
-I wanted to use [cknadler/vim-anywhere](https://github.com/cknadler/vim-anywhere) for this purpose but didn't want to install MacVim to use it. I already had the *best* Vim. **\#emacs** **\#evil**
+## Contributing ##
+Have a question? Like the tool? Don't like it? Open an issue and let's talk about it! Pull requests are welcome! :nerd_face:
+
+Copyright © 2018, Zach Curry, All rights reserved.

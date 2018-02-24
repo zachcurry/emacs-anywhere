@@ -8,7 +8,7 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>emacs anywhere</string>
+				<string>Emacs Anywhere Client</string>
 			</dict>
 			<key>NSMessage</key>
 			<string>runWorkflowAsService</string>
