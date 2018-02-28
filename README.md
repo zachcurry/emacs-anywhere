@@ -9,36 +9,42 @@
 <p>
   <img align="right" src="https://thumbs.gfycat.com/PlumpDeadlyAlpinegoat-size_restricted.gif" width="500px"></img>
   <h2>What it does</h2>
-  A keyboard shortcut, of your choosing, creates a temporary frame and buffer. The text is auto-magically injected into the application your using. Bust your E-moves on-the-fly, with fewer keystrokes. Invoke with selected text and it will auto-magically be replaced.
+  A keyboard shortcut of your choosing creates a temporary frame and buffer. The text is automatically inserted into the application your using. Bust your moves on the fly, with fewer keystrokes. Invoke the shortcut with selected text and it will be replaced.
 </p
 
 <p>
   <img align="right" src="https://imgur.com/NqJWBxD.jpg" width="500"></img>
-  <h2>Install</h2>
+  <h2>Install (OSX)</h2>
   <ol>
     <li><a href="https://raw.githubusercontent.com/zachcurry/emacs-anywhere/master/Emacs%20Anywhere.dmg">Download the installer</a></li>
-    <li>Drag and drop</li>
-    <li>Add keyboard shortcut</li>
+    <li>Drag and drop or double-click</li>
+    <li>Add a keyboard shortcut</li>
   </ol>
+  <h2>Install (Windows)</h2>
+  <strong>TBD</strong>
+  <h2>Install (Linux)</h2>
+  <strong>TBD</strong>
 </p>
 
 ## How to ##
-If your Emacs server is not running, **Emacs Anywhere** will start it before it opens the new, temporary frame. The frame is always opened to an empty buffer initially. When you delete the frame, the buffer's content is auto-magically injected into the application you are using, and the buffer is deleted. Any text selected when the keyboard shortcut is invoked will be replaced.
+Invoke the shortcut. A new frame will be created and display an empty buffer titled `*Emacs Anywhere*`. When the frame is deleted the buffer's content is inserted into the application you're using and the buffer is deleted. Any text selected when the keyboard shortcut is invoked will be replaced.
 
 **YOU DO NOT NEED TO EDIT TO YOUR `init.el`**!
 
-**Update** by downloading the latest installer, drag and drop.
+Update **Emacs Anywhere** by downloading the latest installer and replacing the service.
 
-**Uninstall** by removing `Emacs Anywhere.workflow` in `~/Library/Services`. **Emacs Anywhere** does not modify any file on your machine. No mess.
+Uninstall **Emacs Anywhere** by removing `Emacs Anywhere.workflow` in `~/Library/Services`.
 
-Quit a running service by clicking the spinning cog in the taskbar and invoking the `ea-clipboard` command from Emacs.
+You can quit a running service by clicking the spinning cog in the taskbar. Invoking the `ea-clipboard` command from Emacs will allow you to override the copy to cipboard behavior.
 
 ## Issues? ##
-If your Emacs server isn't running when you use the keyboard shortcut, **Emacs Anywhere** will start it, but it makes the launch process much slower. Run Emacs as a daemon like this `emacs --daemon` to start your server from the command line, or use `server-start` command via Emacs. When the server is running, the new frame launches *real* fast.
+If your Emacs server isn't running when you use the keyboard shortcut **Emacs Anywhere** will start it, but this slow. Run Emacs as a daemon (`emacs --daemon`) to start your server from the command line, or use `server-start` command in Emacs. Once you've a got a running server new frames are created much more quickly.
 
-If it's not working at all, make sure `emacs` and `emacsclient` are on your `PATH`. Having both executables in `/usr/local/bin` should work without issue.
+If **Emacs Anywhere** isn't working, verify that `emacs` and `emacsclient` are in your `PATH` environment variable. A safe bet would be to put both executables in `/usr/local/bin`.
 
 ## Contributing ##
 Have a question? Like the tool? Don't like it? Open an issue and let's talk about it! Pull requests are welcome! :nerd_face:
+
+I sincerely appreciate the help I've had thus far!
 
 Copyright © 2018, Zach Curry, All rights reserved.
