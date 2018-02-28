@@ -23,18 +23,18 @@
 </p>
 
 ## How to ##
-If your Emacs server is not running, Emacs Anywhere will start it before it opens the new, temporary frame. The frame is always opened to an empty buffer initially. When you delete the frame, the buffer's content is auto-magically injected into the application you are using, and the buffer is deleted. Any text selected when the keyboard shortcut is invoked will be replaced.
+If your Emacs server is not running, **Emacs Anywhere** will start it before it opens the new, temporary frame. The frame is always opened to an empty buffer initially. When you delete the frame, the buffer's content is auto-magically injected into the application you are using, and the buffer is deleted. Any text selected when the keyboard shortcut is invoked will be replaced.
 
 **YOU DO NOT NEED TO EDIT TO YOUR `init.el`**!
 
 **Update** by downloading the latest installer, drag and drop.
 
-**Uninstall** by removing `Emacs Anywhere.workflow` in `~/Library/Services`. Emacs Anywhere does not modify any file on your machine. No mess.
+**Uninstall** by removing `Emacs Anywhere.workflow` in `~/Library/Services`. **Emacs Anywhere** does not modify any file on your machine. No mess.
 
 Quit a running service by clicking the spinning cog in the taskbar and invoking the `ea-clipboard` command from Emacs.
 
 ## Issues? ##
-If your Emacs server isn't running when you use the keyboard shortcut, Emacs Anywhere will start it, but it makes the launch process much slower. Run Emacs as a daemon like this `emacs --daemon` to start your server from the command line, or use `server-start` command via Emacs. When the server is running, the new frame launches *real* fast.
+If your Emacs server isn't running when you use the keyboard shortcut, **Emacs Anywhere** will start it, but it makes the launch process much slower. Run Emacs as a daemon like this `emacs --daemon` to start your server from the command line, or use `server-start` command via Emacs. When the server is running, the new frame launches *real* fast.
 
 If it's not working at all, make sure `emacs` and `emacsclient` are on your `PATH`. Having both executables in `/usr/local/bin` should work without issue.
 
