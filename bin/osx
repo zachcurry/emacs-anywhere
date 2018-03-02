@@ -1,0 +1,11 @@
+#!/bin/bash
+
+frontmost_app_name=$( osascript -e 'tell application "System Events"' \
+                                -e 'set aName to name of first application process whose frontmost is true' \
+                                -e 'end tell' \
+                                -e 'aName' )
+
+$HOME/.emacs_anywhere/bin/emacstask
+
+osascript -e "tell application \"$frontmost_app_name\" to activate"
+osascript -e 'tell application "System Events" to keystroke "v" using command down'

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+rm -rf $HOME/.emacs_anywhere
+
+if [[ $OSTYPE == "darwin"*]]
+then
+   rm -rf $HOME/Library/Services/Emacs\ Anywhere.workflow
+fi
+
+echo Emacs Anywhere has been uninstalled

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+window=$( xdotool getactivewindow )
+
+$HOME/.emacs_anywhere/bin/emacstask
+
+xdotool windowactivate --sync $window key --clearmodifiers ctrl+v

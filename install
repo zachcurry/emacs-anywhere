@@ -1,0 +1,29 @@
+#!/bin/bash
+
+ROOT_ABS_PATH=$( pwd -P $0 )
+EA=$HOME/.emacs_anywhere
+
+shared_install () {
+    mkdir -p $EA/bin
+    cp -Rf $ROOT_ABS_PATH/emacs_anywhere.el $EA/emacs_anywhere.el
+    cp -Rf $ROOT_ABS_PATH/bin/emacstask $EA/bin/emacstask
+}
+
+case $OSTYPE in
+    "darwin"*)
+        SERVICES=$HOME/Library/Services
+        shared_install
+        cp -Rf $ROOT_ABS_PATH/bin/osx $EA/bin/run
+        mkdir -p $SERVICES
+        cp -Rf $ROOT_ABS_PATH/Emacs\ Anywhere.workflow $SERVICES
+        ;;
+    "linux-gnu")
+        shared_install
+        cp -Rf $ROOT_ABS_PATH/bin/linux $EA/bin/run
+        ;;
+    *)
+        echo This operating sytem is\'nt currently supported
+        ;;
+esac
+
+echo Emacs Anywhere has been installed
