@@ -8,6 +8,4 @@ xdotool windowfocus --sync $window
 
 clipboard="$( cat $HOME/.emacs_anywhere/clipboard | tr \\n \\r | sed s/\\r*\$// )"
 
-echo $clipboard >> ~/log
-
 xdotool type --delay 1 "$clipboard"
