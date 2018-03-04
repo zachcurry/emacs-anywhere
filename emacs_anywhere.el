@@ -6,14 +6,16 @@
    (point-max))
   (kill-buffer "*Emacs Anywhere*"))
 
-(defun ea-on-delete2 (frame)
-  (f-write (buffer-string) 'utf-8 "/home/sibi/.emacs_anywhere/clipboard"))
+(defun ea-on-delete3 (frame)
+  (write-region (point-min) (point-max) "~/.emacs_anywhere/clipboard")
+  (kill-buffer "*Emacs Anywhere*")
+  )
 
 (defun ea-hook ()
-  (add-hook 'delete-frame-functions 'ea-on-delete2))
+  (add-hook 'delete-frame-functions 'ea-on-delete3))
 
 (defun ea-unhook ()
-  (remove-hook 'delete-frame-functions 'ea-on-delete2))
+  (remove-hook 'delete-frame-functions 'ea-on-delete3))
 
 (defun emacs-anywhere ()
   (interactive)
@@ -24,3 +26,4 @@
 (ea-hook)
 (switch-to-buffer "*Emacs Anywhere*")
 (select-frame-set-input-focus (selected-frame))
+
