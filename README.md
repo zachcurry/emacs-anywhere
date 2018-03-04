@@ -22,7 +22,7 @@ git clone https://github.com/zachcurry/emacs-anywhere.git
 ``` bash
 ./emacs-anywhere/install
 ```
-3. Open System Preferences and navigate to `keyboard > shortcuts > Services`. Check the box beside "Emac Anywhere" and click "Add Shortcut" and key a shortcut.
+3. Open System Preferences and navigate to `keyboard > shortcuts > Services`. Check the box beside "Emacs Anywhere" and click "Add Shortcut" and key a shortcut.
 
 ### Linux (alpha) ###
 *The Linux implementation requires* **xdotool** *be installed. Install as needed.*
