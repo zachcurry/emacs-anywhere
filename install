@@ -22,7 +22,7 @@ case $OSTYPE in
         cp -Rf $ROOT_ABS_PATH/bin/linux $EA/bin/run
         ;;
     *)
-        echo This operating sytem is\'nt currently supported
+        echo This operating system is\'nt currently supported
         ;;
 esac
 
