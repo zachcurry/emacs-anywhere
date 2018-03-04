@@ -18,9 +18,9 @@
 ``` bash
 git clone https://github.com/zachcurry/emacs-anywhere.git
 ```
-2. Run the install script
+2. Run the install script from the root of the repo
 ``` bash
-./emacs-anywhere/install
+./install
 ```
 3. Open System Preferences and navigate to `keyboard > shortcuts > Services`. Check the box beside "Emac Anywhere" and click "Add Shortcut" and key a shortcut.
 
@@ -33,9 +33,9 @@ sudo apt-get xdotool
 ``` bash
 git clone https://github.com/zachcurry/emacs-anywhere.git
 ```
-2. Run the install script
+2. Run the install script from the root of the repo
 ``` bash
-./emacs-anywhere/install
+./install
 ```
 3. Create a keyboard shortcut with this command `$HOME/.emacs_anywhere/bin/run`
 
@@ -45,7 +45,7 @@ TBD
 ## How to ##
 Invoke the shortcut. A new frame will be created and display an empty buffer titled `*Emacs Anywhere*`. When the frame is deleted the buffer's content is inserted into the application you're using and the buffer is deleted. Any text selected when the keyboard shortcut is invoked will be replaced.
 
-Uninstall **Emacs Anywhere** by running the `uninstall` script in the root of the repo
+Uninstall **Emacs Anywhere** by running the `uninstall` script from the root of the repo
 ``` bash
 ./uninstall
 ```
