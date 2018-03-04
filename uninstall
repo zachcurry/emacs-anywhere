@@ -2,7 +2,7 @@
 
 rm -rf $HOME/.emacs_anywhere
 
-if [[ $OSTYPE == "darwin"*]]
+if [[ $OSTYPE == "darwin"* ]]
 then
    rm -rf $HOME/Library/Services/Emacs\ Anywhere.workflow
 fi
