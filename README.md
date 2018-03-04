@@ -9,7 +9,7 @@
 <p>
   <img align="right" src="https://thumbs.gfycat.com/PlumpDeadlyAlpinegoat-size_restricted.gif" width="500px"></img>
   <h2>What it does</h2>
-  A keyboard shortcut of your choosing creates a temporary frame and buffer. The text is automatically inserted into the application your using. Bust your moves on the fly, with fewer keystrokes. Invoke the shortcut with selected text and it will be replaced.
+  A keyboard shortcut of your choosing creates a temporary frame and buffer. The text is automatically inserted into the application you're using. Bust your moves on the fly, with fewer keystrokes. Invoke the shortcut with selected text and it will be replaced.
 </p>
 
 ## Install ##
@@ -22,7 +22,7 @@ git clone https://github.com/zachcurry/emacs-anywhere.git
 ``` bash
 ./emacs-anywhere/install
 ```
-3. Open System Preferences and navigate to `keyboard > shortcuts > Services`. Check the box beside "Emac Anywhere" and click "Add Shortcut" and key a shortcut.
+3. Open System Preferences and navigate to `keyboard > shortcuts > Services`. Check the box beside "Emacs Anywhere" and click "Add Shortcut" and key a shortcut.
 
 ### Linux (alpha) ###
 *The Linux implementation requires* **xdotool** *be installed. Install as needed.*
