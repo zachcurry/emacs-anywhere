@@ -9,7 +9,7 @@
 <p>
   <img align="right" src="https://thumbs.gfycat.com/PlumpDeadlyAlpinegoat-size_restricted.gif" width="500px"></img>
   <h2>What it does</h2>
-  A keyboard shortcut of your choosing creates a temporary frame and buffer. The text is automatically inserted into the application your using. Bust your moves on the fly, with fewer keystrokes. Invoke the shortcut with selected text and it will be replaced.
+  A keyboard shortcut of your choosing creates a temporary frame and buffer. The text is automatically inserted into the application you&apos;re using. Bust your moves on the fly, with fewer keystrokes. Invoke the shortcut with selected text and it will be replaced.
 </p>
 
 ## Install ##
@@ -51,7 +51,7 @@ Uninstall **Emacs Anywhere** by running the `uninstall` script in the root of th
 ```
 
 ## Slow? ##
-If your Emacs server isn't running when you use the keyboard shortcut **Emacs Anywhere** will start it, but this slow. Run Emacs as a daemon (`emacs --daemon`) to start your server from the command line, or use `server-start` command in Emacs. Once you've a got a running server new frames are created much faster.
+If your Emacs server isn't running when you use the keyboard shortcut, **Emacs Anywhere** will start it (this is slower). Run Emacs as a daemon (`emacs --daemon`) to start your server from the command line, or use `server-start` command in Emacs. Once you've a got a running server, new frames are created much faster.
 
 ## TODO ##
 - Emacs command to toggle **Emacs Anywhere**
