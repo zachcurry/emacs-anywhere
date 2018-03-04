@@ -9,7 +9,7 @@
 <p>
   <img align="right" src="https://thumbs.gfycat.com/PlumpDeadlyAlpinegoat-size_restricted.gif" width="500px"></img>
   <h2>What it does</h2>
-  A keyboard shortcut of your choosing creates a temporary frame and buffer. The text is automatically inserted into the application your using. Bust your moves on the fly, with fewer keystrokes. Invoke the shortcut with selected text and it will be replaced.
+  A keyboard shortcut of your choosing creates a temporary frame and buffer. The text is automatically inserted into the application you're using. Bust your moves on the fly, with fewer keystrokes. Invoke the shortcut with selected text and it will be replaced.
 </p>
 
 ## Install ##
