@@ -51,7 +51,7 @@ Uninstall **Emacs Anywhere** by running the `uninstall` script in the root of th
 ```
 
 ## Slow? ##
-If your Emacs server isn't running when you use the keyboard shortcut **Emacs Anywhere** will start it, but this slow. Run Emacs as a daemon (`emacs --daemon`) to start your server from the command line, or use `server-start` command in Emacs. Once you've a got a running server new frames are created much faster.
+If your Emacs server isn't running when you use the keyboard shortcut, **Emacs Anywhere** will start it (this is slower). Run Emacs as a daemon (`emacs --daemon`) to start your server from the command line, or use `server-start` command in Emacs. Once you've a got a running server, new frames are created much faster.
 
 ## TODO ##
 - Emacs command to toggle **Emacs Anywhere**
