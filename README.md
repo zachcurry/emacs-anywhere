@@ -27,7 +27,7 @@ git clone https://github.com/zachcurry/emacs-anywhere.git
 ### Linux (alpha) ###
 *The Linux implementation requires* **xdotool** *be installed. Install as needed.*
 ``` bash
-sudo apt-get xdotool
+sudo apt-get install xdotool
 ```
 1. Clone the repo
 ``` bash
