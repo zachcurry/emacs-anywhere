@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-window=$( xdotool getwindowfocus )
+window=$( xdotool getactivewindow || xdotool getwindowfocus )
 
 $HOME/.emacs_anywhere/bin/emacstask
 
