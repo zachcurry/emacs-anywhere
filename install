@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROOT_ABS_PATH=$( pwd -P $0 )
+ROOT_ABS_PATH=$( dirname $0 )
 EA=$HOME/.emacs_anywhere
 
 shared_install () {
