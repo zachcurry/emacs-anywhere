@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[[ -r emacs_anywhere.el ]] || { echo "Please run from the root of the repo"; exit 1; }
+
 ROOT_ABS_PATH=$( pwd -P $0 )
 EA=$HOME/.emacs_anywhere
 
