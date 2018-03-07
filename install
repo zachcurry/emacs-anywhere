@@ -1,7 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ROOT_ABS_PATH=$( pwd -P $0 )
 EA=$HOME/.emacs_anywhere
+
+if [ $0 != "./install" ]; then
+    echo "You need to execute the script from the root directory."
+    echo "Installation failed"
+    exit 1
+fi
 
 shared_install () {
     mkdir -p $EA/bin
