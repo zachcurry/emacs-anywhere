@@ -1,0 +1,18 @@
+#!/bin/bash
+
+BIN_PATH=$HOME/.emacs_anywhere/bin
+
+err () { echo -e "Error: $@" 1>&2; }
+
+case $OSTYPE in
+    "darwin"*)
+        $BIN_PATH/osx
+        ;;
+    "linux-gnu")
+        $BIN_PATH/linux
+        ;;
+    *)
+        err OS $OSTYPE isn\'t currently supported
+        exit 1
+        ;;
+esac

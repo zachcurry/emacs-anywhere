@@ -59,11 +59,10 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string># TODO: Automator has PATH issues. Find a more general solution to this
-export PATH=/usr/local/bin:$PATH
-
-
-source $HOME/.emacs_anywhere/bin/run</string>
+					<string>
+          export PATH=/usr/local/bin:$PATH
+          source ~/.emacs_anywhere/bin/run
+          </string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>

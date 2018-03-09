@@ -1,10 +1,20 @@
 #!/bin/bash
 
-rm -rf $HOME/.emacs_anywhere
+set -e
 
-if [[ $OSTYPE == "darwin"* ]]
-then
+EA_PATH=$HOME/.emacs_anywhere
+
+err () { echo -e "Error: $@" 1>&2; }
+
+if [ ! -d $EA_PATH ]; then
+    err emacs-anywhere is not installed
+    exit 1
+fi
+
+rm -rf $EA_PATH
+
+if [[ $OSTYPE == "darwin"* ]]; then
    rm -rf $HOME/Library/Services/Emacs\ Anywhere.workflow
 fi
 
-echo Emacs Anywhere has been uninstalled
+echo Emacs Anywhere has been uninstalled!
