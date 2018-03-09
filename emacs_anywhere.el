@@ -1,7 +1,16 @@
-(defun ea-on-delete (frame)
+(defun osx-on-delete ()
   (clipboard-kill-ring-save
    (point-min)
-   (point-max))
+   (point-max)))
+
+(defun linux-on-delete ()
+  (write-region nil nil "/tmp/eaclipboard")
+  (shell-command "xclip -selection clipboard /tmp/eaclipboard &> /dev/null"))
+
+(defun on-delete (frame)
+  (cond
+   ((string-equal system-type "darwin") (osx-on-delete))
+   ((string-equal system-type "gnu/linux") (linux-on-delete)))
   (kill-buffer "*Emacs Anywhere*"))
 
 (defun ea-hook ()

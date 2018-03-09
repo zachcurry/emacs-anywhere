@@ -1,29 +1,54 @@
 #!/bin/bash
 
-ROOT_ABS_PATH=$( pwd -P $0 )
-EA=$HOME/.emacs_anywhere
+set -e
 
-shared_install () {
-    mkdir -p $EA/bin
-    cp -Rf $ROOT_ABS_PATH/emacs_anywhere.el $EA/emacs_anywhere.el
-    cp -Rf $ROOT_ABS_PATH/bin/emacstask $EA/bin/emacstask
+EA_PATH=$HOME/.emacs_anywhere
+EA_URL='https://github.com/zachcurry/emacs-anywhere.git'
+
+err () { echo -e "Error: $@" 1>&2; }
+
+installed () { hash $1 &> /dev/null; }
+
+require_deps () {
+    for d in $@; do
+        if installed $d ; then
+            echo dependency check passed: $d
+        else
+            err dependency check failed: "'$d'" not found
+            exit 1
+        fi
+    done
 }
 
 case $OSTYPE in
     "darwin"*)
-        SERVICES=$HOME/Library/Services
-        shared_install
-        cp -Rf $ROOT_ABS_PATH/bin/osx $EA/bin/run
-        mkdir -p $SERVICES
-        cp -Rf $ROOT_ABS_PATH/Emacs\ Anywhere.workflow $SERVICES
+        WRKFLW_PATH=$EA_PATH/Emacs\ Anywhere.workflow
+        SERVICES_PATH=$HOME/Library/Services
         ;;
     "linux-gnu")
-        shared_install
-        cp -Rf $ROOT_ABS_PATH/bin/linux $EA/bin/run
+        require_deps xdotool xclip
         ;;
     *)
-        echo This operating system is\'nt currently supported
+        err OS $OSTYPE isn\'t currently supported
+        exit 1
         ;;
 esac
 
-echo Emacs Anywhere has been installed
+require_deps emacsclient git
+
+if [ -a $EA_PATH ]; then
+    echo 'Uninstalling existing installation...'
+    rm -rf $EA_PATH
+    echo 'Reinstalling Emacs Anywhere...'
+else
+    echo "Installing Emacs Anywhere..."
+fi
+
+git clone $EA_URL $EA_PATH
+
+if [[ $OSTYPE == "darwin"* ]]; then
+    echo "Copying $WRKFLW_PATH to ${SERVICES_PATH}..."
+    cp -Rf "${WRKFLW_PATH}" $SERVICES_PATH
+fi
+
+echo Emacs Anywhere has been installed!

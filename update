@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -e
+
+EA_PATH=$HOME/.emacs_anywhere
+
+err () { echo -e "Error: $@" 1>&2; }
+
+if [ ! -d $EA_PATH ]; then
+    err Emacs Anywhere is not installed!
+    exit 1
+fi
+
+pushd $EA_PATH
+git pull origin master
+popd
+
+if [[ $OSTYPE == "darwin"* ]]; then
+    cp -Rf $EA_PATH/Emacs\ Anywhere.workflow $HOME/Library/Services
+fi
+
+echo Emacs Anywhere has been updated!
