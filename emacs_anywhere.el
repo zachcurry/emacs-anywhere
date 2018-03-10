@@ -7,7 +7,7 @@
   (write-region nil nil "/tmp/eaclipboard")
   (shell-command "xclip -selection clipboard /tmp/eaclipboard &> /dev/null"))
 
-(defun on-delete (frame)
+(defun ea-on-delete (frame)
   (cond
    ((string-equal system-type "darwin") (osx-on-delete))
    ((string-equal system-type "gnu/linux") (linux-on-delete)))
