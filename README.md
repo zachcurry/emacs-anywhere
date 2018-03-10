@@ -31,7 +31,7 @@ Open **System Preferences** and navigate to **keyboard > shortcuts > Services**.
 >``` bash
 >sudo apt-get install xclip
 >```
->**Wayland** window manager is **not supported**. You can **swtich** your window manager in **Ubuntu** by **logging out** and selecting **Xorg** as your window manager.
+>**Wayland** window manager is **not supported**. You can **switch** your window manager in **Ubuntu** by going to the login screen and selecting **Xorg** as your window manager.
 
 <p align="center">
   <img src="https://imgur.com/DrVbpRX.jpg" width="500px"></img>
