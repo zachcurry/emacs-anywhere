@@ -22,9 +22,8 @@ curl -fsSL https://raw.github.com/zachcurry/emacs-anywhere/master/install | bash
 ```
 Open **System Preferences** and navigate to **keyboard > shortcuts > Services**. Check the box beside "Emacs Anywhere" and click "Add Shortcut" and key a shortcut.
 
-### Linux (alpha) ###
-#### READ THIS BEFORE YOU INSTALL ON LINUX ####
->### Requires: **xdotool**, **xclip** ###
+### Linux ###
+>### dependencies: **xdotool**, **xclip** ###
 >Install as needed
 >``` bash
 >sudo apt-get install xdotool
