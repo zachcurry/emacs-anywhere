@@ -20,7 +20,7 @@
 ``` bash
 curl -fsSL https://raw.github.com/zachcurry/emacs-anywhere/master/install | bash
 ```
-Open **System Preferences** and navigate to **keyboard > shortcuts > Services**. Check the box beside "Emacs Anywhere" and click "Add Shortcut" and key a shortcut.
+Open **System Preferences** and navigate to **keyboard > shortcuts > Services**. Check the box beside "Emacs Anywhere", click "Add Shortcut" and key a shortcut.
 
 ### Linux ###
 >### dependencies: **xdotool**, **xclip** ###
@@ -68,7 +68,7 @@ Invoke the shortcut with a running Emacs server. A new frame will be created and
 ## Troubleshooting ##
 If **Emacs Anywhere** is not launching double check your keyboard shortcut is set properly and if that looks okay set the `EA_EDITOR` explicitly in `~/.emacs_anywhere/config`.
 
-If you are using Linux and and the copy/paste features aren't working as expected, there is a good chance **xdotool** or **xclip** do not work properly in your environment. Soon, we will add some test scripts to the repo to allow you to easily test that these dependencies are working.
+If you are using Linux and the copy/paste features aren't working as expected, there is a good chance **xdotool** or **xclip** do not work properly in your environment. Soon, we will add some test scripts to the repo to allow you to easily test that these dependencies are working.
 
 If all else fails you can run `~/.emacs_anywhere/bin/run` and read the output. 
 
