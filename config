@@ -14,6 +14,6 @@
 # NOTE: 0 is truthy and everything else is falsey.
 # NOTE: Run `type -a <command>` to get an absolute path to an executable.
 #################################################################################
-# export EA_EDITOR='/usr/local/bin/emacsclient -a "" -c'
+# export EA_EDITOR="/usr/local/bin/emacsclient -a '' -c"
 # export EA_SHOULD_COPY=0
 # export EA_SHOULD_PASTE=0
