@@ -44,7 +44,7 @@ Open **System Preferences** and navigate to **keyboard > shortcuts > Services**.
 ``` bash
 curl -fsSL https://raw.github.com/zachcurry/emacs-anywhere/master/install | bash
 ```
-Create a keyboard shortcut with this command `$HOME/.emacs_anywhere/bin/run`
+Create a keyboard shortcut to run `$HOME/.emacs_anywhere/bin/run`. Google how to create a keyboard shortcut in your distro if you're not sure how to do this.
 
 ### Windows ###
 TBD
