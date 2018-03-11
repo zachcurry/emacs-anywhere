@@ -1,15 +1,19 @@
 #!/bin/bash
 
-BIN_PATH=$HOME/.emacs_anywhere/bin
+EA_PATH=$HOME/.emacs_anywhere
 
 err () { echo -e "Error: $@" 1>&2; }
 
+if [[ -e $EA_PATH/config ]]; then
+    $EA_PATH/config
+fi
+
 case $OSTYPE in
     "darwin"*)
-        $BIN_PATH/osx
+        $EA_PATH/bin/osx
         ;;
     "linux-gnu")
-        $BIN_PATH/linux
+        $EA_PATH/bin/linux
         ;;
     *)
         err OS $OSTYPE isn\'t currently supported
