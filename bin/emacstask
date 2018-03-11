@@ -2,4 +2,8 @@
 
 ELISP=$( cat $HOME/.emacs_anywhere/emacs_anywhere.el )
 
-emacsclient -a '' -c -e "(progn $ELISP)"
+if [ -z "$EA_EDITOR" ]; then
+    EA_EDITOR="emacsclient -a '' -c"
+fi
+
+$EA_EDITOR -e "(progn $ELISP)"
