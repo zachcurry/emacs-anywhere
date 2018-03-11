@@ -1,5 +1,17 @@
 #!/bin/bash
 
+if [ -z ${EA_SHOULD_COPY+x} ]; then
+    EA_SHOULD_COPY=false
+fi
+
+if [ -z ${EA_SHOULD_PASTE+x} ]; then
+    EA_SHOULD_PASTE=true
+fi
+
+if [ "$EA_SHOULD_COPY" = true ]; then
+    osascript -e 'tell application "System Events" to keystroke "c" using command down'
+fi
+
 frontmost_app_name=$( osascript -e 'tell application "System Events"' \
                                 -e 'set aName to name of first application process whose frontmost is true' \
                                 -e 'end tell' \
@@ -8,4 +20,7 @@ frontmost_app_name=$( osascript -e 'tell application "System Events"' \
 $HOME/.emacs_anywhere/bin/emacstask
 
 osascript -e "tell application \"$frontmost_app_name\" to activate"
-osascript -e 'tell application "System Events" to keystroke "v" using command down'
+
+if [ "$EA_SHOULD_PASTE" = true ]; then
+    osascript -e 'tell application "System Events" to keystroke "v" using command down'
+fi

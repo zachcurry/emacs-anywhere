@@ -7,13 +7,11 @@
 
 
 
-
 # DO NOT EDIT PAST THIS LINE!
 #################################################################################
 # Example configs
-# NOTE: 0 is truthy and everything else is falsey.
-# NOTE: Run `type -a <command>` to get an absolute path to an executable.
+# NOTE: use true and false for boolean options
 #################################################################################
 # export EA_EDITOR="/usr/local/bin/emacsclient -a '' -c"
-# export EA_SHOULD_COPY=0
-# export EA_SHOULD_PASTE=0
+# export EA_SHOULD_COPY=false
+# export EA_SHOULD_PASTE=true
