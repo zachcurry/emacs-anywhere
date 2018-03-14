@@ -14,7 +14,12 @@ fi
 
 window=$( xdotool getactivewindow )
 
-$HOME/.emacs_anywhere/bin/emacstask
+. $HOME/.emacs_anywhere/bin/emacstask
+. /tmp/eaenv
+
+if [ "$EA_ABORT" = true ]; then
+    exit 0;
+fi
 
 xdotool windowactivate --sync $window
 

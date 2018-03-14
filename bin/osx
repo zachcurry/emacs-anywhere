@@ -17,7 +17,12 @@ frontmost_app_name=$( osascript -e 'tell application "System Events"' \
                                 -e 'end tell' \
                                 -e 'aName' )
 
-$HOME/.emacs_anywhere/bin/emacstask
+. $HOME/.emacs_anywhere/bin/emacstask
+. /tmp/eaenv
+
+if [ "$EA_ABORT" = true ]; then
+    exit 0;
+fi
 
 osascript -e "tell application \"$frontmost_app_name\" to activate"
 
