@@ -12,19 +12,35 @@ if [ "$EA_SHOULD_COPY" = true ]; then
     osascript -e 'tell application "System Events" to keystroke "c" using command down'
 fi
 
-frontmost_app_name=$( osascript -e 'tell application "System Events"' \
-                                -e 'set aName to name of first application process whose frontmost is true' \
-                                -e 'end tell' \
-                                -e 'aName' )
+EA_APP_NAME=$( osascript \
+                   -e 'tell application "System Events"' \
+                   -e 'set frontAppName to name of first application process whose frontmost is true' \
+                   -e 'end tell' \
+                   -e 'return frontAppName' )
 
-. $HOME/.emacs_anywhere/bin/emacstask
+EA_WINDOW_TITLE=$( osascript \
+                   -e 'set windowTitle to ""' \
+                   -e 'tell application "System Events"' \
+                   -e 'set frontAppProcess to first application process whose frontmost is true' \
+                   -e 'end tell' \
+                   -e 'tell frontAppProcess' \
+                   -e 'if count of windows > 0 then' \
+                   -e 'set windowTitle to name of front window' \
+                   -e 'end if' \
+                   -e 'end tell' \
+                   -e 'return windowTitle' )
+
+export EA_APP_NAME
+export EA_WINDOW_TITLE
+
+$HOME/.emacs_anywhere/bin/emacstask
 . /tmp/eaenv
 
 if [ "$EA_ABORT" = true ]; then
     exit 0;
 fi
 
-osascript -e "tell application \"$frontmost_app_name\" to activate"
+osascript -e "tell application \"$EA_APP_NAME\" to activate"
 
 if [ "$EA_SHOULD_PASTE" = true ]; then
     osascript -e 'tell application "System Events" to keystroke "v" using command down'
