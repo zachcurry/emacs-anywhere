@@ -12,16 +12,22 @@ if [ "$EA_SHOULD_COPY" = true ]; then
     xdotool key --clearmodifiers ctrl+c
 fi
 
-window=$( xdotool getactivewindow )
+EA_WINDOW=$( xdotool getactivewindow )
 
-. $HOME/.emacs_anywhere/bin/emacstask
+EA_APP_NAME=$( xprop -id $EA_WINDOW WM_CLASS | grep -oE '[^ ]+$' )
+EA_WINDOW_TITLE=$( xprop -id $EA_WINDOW _NET_WM_NAME | cut -d" " -f3- )
+
+export EA_APP_NAME
+export EA_WINDOW_TITLE
+
+$HOME/.emacs_anywhere/bin/emacstask
 . /tmp/eaenv
 
 if [ "$EA_ABORT" = true ]; then
     exit 0;
 fi
 
-xdotool windowactivate --sync $window
+xdotool windowactivate --sync $EA_WINDOW
 
 if [ "$EA_SHOULD_PASTE" = true ]; then
     xdotool key --clearmodifiers ctrl+v

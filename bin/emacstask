@@ -7,6 +7,6 @@ if [ -z "$EA_EDITOR" ]; then
 fi
 
 $EA_EDITOR -e "(progn
-                 (defconst ea-app-name \"$EA_APP_NAME\")
-                 (defconst ea-window-title \"$EA_WINDOW_TITLE\")
+                 (defconst ea-app-name $EA_APP_NAME)
+                 (defconst ea-window-title $EA_WINDOW_TITLE)
                  $ELISP)"

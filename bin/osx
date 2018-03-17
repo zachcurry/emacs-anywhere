@@ -30,8 +30,8 @@ EA_WINDOW_TITLE=$( osascript \
                    -e 'end tell' \
                    -e 'return windowTitle' )
 
-export EA_APP_NAME
-export EA_WINDOW_TITLE
+export EA_APP_NAME="\"$EA_APP_NAME\""
+export EA_WINDOW_TITLE="\"$EA_WINDOW_TITLE\""
 
 $HOME/.emacs_anywhere/bin/emacstask
 . /tmp/eaenv
@@ -40,7 +40,7 @@ if [ "$EA_ABORT" = true ]; then
     exit 0;
 fi
 
-osascript -e "tell application \"$EA_APP_NAME\" to activate"
+osascript -e "tell application $EA_APP_NAME to activate"
 
 if [ "$EA_SHOULD_PASTE" = true ]; then
     osascript -e 'tell application "System Events" to keystroke "v" using command down'
