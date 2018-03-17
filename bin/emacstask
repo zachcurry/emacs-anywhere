@@ -7,9 +7,6 @@ if [ -z "$EA_EDITOR" ]; then
 fi
 
 $EA_EDITOR -e "(progn
-                 (defvar ea-app-name \"\")
-                 (setq ea-app-name \"$EA_APP_NAME\")
-                 (defvar ea-window-title \"\")
-                 (setq ea-window-title \"$EA_WINDOW_TITLE\")
-                 $ELISP
-                 (run-hook-with-args 'ea-enter-hook ea-app-name ea-window-title))"
+                 (defconst ea-app-name \"$EA_APP_NAME\")
+                 (defconst ea-window-title \"$EA_WINDOW_TITLE\")
+                 $ELISP)"

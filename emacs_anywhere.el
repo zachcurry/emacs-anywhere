@@ -1,23 +1,9 @@
-(defvar ea-on)
+(defvar ea-on t)
 
-(defun ea-osx-on-delete ()
-  (clipboard-kill-ring-save
-   (point-min)
-   (point-max)))
+(defconst ea--buffer-name "*Emacs Anywhere*")
 
-(defun ea-linux-on-delete ()
-  (write-region nil nil "/tmp/eaclipboard")
-  (shell-command "xclip -selection clipboard /tmp/eaclipboard &> /dev/null"))
-
-(defun ea-on-delete (frame)
-  (when ea-on
-    (cond
-     ((string-equal system-type "darwin") (ea-osx-on-delete))
-     ((string-equal system-type "gnu/linux") (ea-linux-on-delete)))
-    (kill-buffer "*Emacs Anywhere*"))
-  (shell-command
-   (format "echo export EA_ABORT=%s > /tmp/eaenv"
-           (if ea-on "false" "true"))))
+(defconst ea--osx (string-equal system-type "darwin"))
+(defconst ea--gnu-linux (string-equal system-type "gnu/linux"))
 
 (defun toggle-ea ()
   (interactive)
@@ -26,10 +12,32 @@
    "Emacs Anywhere: %s"
    (if ea-on "on" "off")))
 
-(defun ea-init ()
-  (setq ea-on t)
-  (add-hook 'delete-frame-functions 'ea-on-delete)
-  (switch-to-buffer "*Emacs Anywhere*")
-  (select-frame-set-input-focus (selected-frame)))
+(defun ea--osx-copy-to-clip ()
+  (clipboard-kill-ring-save
+   (point-min)
+   (point-max)))
 
-(ea-init)
+(defun ea--gnu-linux-copy-to-clip ()
+  (write-region nil nil "/tmp/eaclipboard")
+  (shell-command "xclip -selection clipboard /tmp/eaclipboard &> /dev/null"))
+
+(defun ea--delete-frame-handler (_frame)
+  (when ea-on
+    (cond
+     (ea--osx (ea--osx-copy-to-clip))
+     (ea--gnu-linux (ea--gnu-linux-copy-to-clip)))
+    (kill-buffer ea--buffer-name))
+  (shell-command
+   (format "echo export EA_ABORT=%s > /tmp/eaenv"
+           (if ea-on "false" "true"))))
+
+(defun ea--init ()
+  (setq ea-on t) ; begin each session with EA enabled
+  (add-hook 'delete-frame-functions 'ea--delete-frame-handler)
+  (switch-to-buffer ea--buffer-name)
+  (select-frame-set-input-focus (selected-frame))
+  ;; run hook if defined
+  (when (boundp 'ea-popup-hook)
+    (run-hook-with-args 'ea-popup-hook ea-app-name ea-window-title)))
+
+(ea--init)
