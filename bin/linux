@@ -1,15 +1,7 @@
 #!/bin/bash
 
-if [ -z ${EA_SHOULD_COPY+x} ]; then
-    EA_SHOULD_COPY=false
-fi
-
 if [ -z ${EA_SHOULD_PASTE+x} ]; then
     EA_SHOULD_PASTE=true
-fi
-
-if [ "$EA_SHOULD_COPY" = true ]; then
-    xdotool key --clearmodifiers ctrl+c
 fi
 
 EA_WINDOW=$( xdotool getactivewindow )
