@@ -1,9 +1,5 @@
 #!/bin/bash
 
-if [ -z ${EA_SHOULD_PASTE+x} ]; then
-    EA_SHOULD_PASTE=true
-fi
-
 EA_WINDOW=$( xdotool getactivewindow )
 
 EA_APP_NAME=$( xprop -id $EA_WINDOW WM_CLASS | grep -oE '[^ ]+$' )

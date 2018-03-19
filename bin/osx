@@ -1,9 +1,5 @@
 #!/bin/bash
 
-if [ -z ${EA_SHOULD_PASTE+x} ]; then
-    EA_SHOULD_PASTE=true
-fi
-
 EA_APP_NAME=$( osascript \
                    -e 'tell application "System Events"' \
                    -e 'set frontAppName to name of first application process whose frontmost is true' \

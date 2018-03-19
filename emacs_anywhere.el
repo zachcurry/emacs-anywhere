@@ -1,4 +1,5 @@
 (defvar ea-on t)
+(defvar ea-paste t)
 
 (defconst ea--buffer-name "*Emacs Anywhere*")
 
@@ -28,11 +29,13 @@
      (ea--gnu-linux (ea--gnu-linux-copy-to-clip)))
     (kill-buffer ea--buffer-name))
   (shell-command
-   (format "echo export EA_ABORT=%s > /tmp/eaenv"
-           (if ea-on "false" "true"))))
+   (format "echo export EA_ABORT=%s; export EA_SHOULD_PASTE=%s > /tmp/eaenv"
+           (if ea-on "false" "true")
+           (if ea-paste "true" "false"))))
 
 (defun ea--init ()
-  (setq ea-on t) ; begin each session with EA enabled
+  (set ea-on t) ; begin each session with EA enabled
+  (set ea-paste t) ; begin each session with paste enabled
   (add-hook 'delete-frame-functions 'ea--delete-frame-handler)
   (switch-to-buffer ea--buffer-name)
   (select-frame-set-input-focus (selected-frame))
