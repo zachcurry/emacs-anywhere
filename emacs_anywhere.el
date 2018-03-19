@@ -29,13 +29,13 @@
      (ea--gnu-linux (ea--gnu-linux-copy-to-clip)))
     (kill-buffer ea--buffer-name))
   (shell-command
-   (format "echo export EA_ABORT=%s; export EA_SHOULD_PASTE=%s > /tmp/eaenv"
+   (format "echo export EA_ABORT=%s\";\" export EA_SHOULD_PASTE=%s > /tmp/eaenv"
            (if ea-on "false" "true")
            (if ea-paste "true" "false"))))
 
 (defun ea--init ()
-  (set ea-on t) ; begin each session with EA enabled
-  (set ea-paste t) ; begin each session with paste enabled
+  (setq ea-on t) ; begin each session with EA enabled
+  (setq ea-paste t) ; begin each session with paste enabled
   (add-hook 'delete-frame-functions 'ea--delete-frame-handler)
   (switch-to-buffer ea--buffer-name)
   (select-frame-set-input-focus (selected-frame))
