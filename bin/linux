@@ -30,6 +30,9 @@ export EA_HEIGHT="${EA_GEO[5]}"
 
 $HOME/.emacs_anywhere/bin/emacstask
 
+if [ ! -f /tmp/eaenv ]; then
+    exit 1
+fi
 . /tmp/eaenv
 rm /tmp/eaenv
 
