@@ -9,4 +9,8 @@ fi
 $EA_EDITOR -e "(progn
                  (defconst ea-app-name $EA_APP_NAME)
                  (defconst ea-window-title $EA_WINDOW_TITLE)
+                 (defconst ea-x $EA_X)
+                 (defconst ea-y $EA_Y)
+                 (defconst ea-width $EA_WIDTH)
+                 (defconst ea-height $EA_HEIGHT)
                  $ELISP)"

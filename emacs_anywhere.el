@@ -18,10 +18,10 @@
    (point-max)))
 
 (defun ea--gnu-linux-copy-to-clip ()
-  (write-region nil nil "/tmp/eaclipboard")
-  (shell-command "xclip -selection clipboard /tmp/eaclipboard &> /dev/null"))
+  (write-region nil nil "/tmp/eaclipboard"))
 
 (defun ea--delete-frame-handler (_frame)
+  (remove-hook 'delete-frame-functions 'ea--delete-frame-handler)
   (when ea-on
     (cond
      (ea--osx (ea--osx-copy-to-clip))
@@ -38,6 +38,20 @@
   (select-frame-set-input-focus (selected-frame))
   ;; run hook if defined
   (when (boundp 'ea-popup-hook)
-    (run-hook-with-args 'ea-popup-hook ea-app-name ea-window-title)))
+    (run-hook-with-args 'ea-popup-hook
+                        ea-app-name
+                        ea-window-title
+                        ea-x
+                        ea-y
+                        ea-width
+                        ea-height)))
 
 (ea--init)
+
+(defun popup-handler (app-name window-title x y width height)
+  (set-frame-position (selected-frame) x y)
+  (unless (zerop width)
+    (set-frame-size (selected-frame) width 400))
+  (cond
+   ((equal s "Google Chome") (markdown-mode))
+   (t nil)))
