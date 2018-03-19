@@ -60,8 +60,14 @@
 				<dict>
 					<key>COMMAND_STRING</key>
 					<string>
-          export PATH=/usr/local/bin:$PATH
-          source ~/.emacs_anywhere/bin/run
+if [ -x /usr/libexec/path_helper ]; then
+    eval `/usr/libexec/path_helper -s`
+fi
+if  [ -f "$HOME"/.bash_profile ]; then
+    source "$HOME"/.bash_profile
+fi
+
+source ~/.emacs_anywhere/bin/run
           </string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
