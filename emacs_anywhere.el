@@ -1,5 +1,6 @@
 (defvar ea-popup-hook nil
-  "Functions run after Emacs Anywhere creates a new frame and buffer.")
+  "Functions run after entering Emacs Anywhere session.
+Functions are run with args APP-NAME WINDOW-TITLE X Y WIDTH HEIGHT")
 
 (defvar ea-on t)
 (defvar ea-copy t)
