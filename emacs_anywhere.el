@@ -27,7 +27,8 @@
 
 (defun ea--delete-frame-handler (_frame)
   (remove-hook 'delete-frame-functions 'ea--delete-frame-handler)
-  (when (and ea-on ea-copy)
+  (when (and ea-on ea-copy (get-buffer ea--buffer-name))
+    (switch-to-buffer ea--buffer-name)
     (cond
      (ea--osx (ea--osx-copy-to-clip))
      (ea--gnu-linux (ea--gnu-linux-copy-to-clip))))
