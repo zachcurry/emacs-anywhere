@@ -26,7 +26,7 @@ case $OSTYPE in
         SERVICES_PATH=$HOME/Library/Services
         ;;
     "linux-gnu")
-        require_deps xclip xdotool xwininfo
+        require_deps xclip xdotool xprop xwininfo
         ;;
     *)
         err OS $OSTYPE isn\'t currently supported
