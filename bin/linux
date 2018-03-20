@@ -28,8 +28,10 @@ if [ "$EA_ABORT" = true ]; then
     exit 0;
 fi
 
-xclip -selection clipboard /tmp/eaclipboard
-rm /tmp/eaclipboard
+if [ "$EA_SHOULD_COPY" = true ]; then
+    xclip -selection clipboard /tmp/eaclipboard
+    rm /tmp/eaclipboard
+fi
 
 xdotool windowactivate --sync $EA_WINDOW
 
