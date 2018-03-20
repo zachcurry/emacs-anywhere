@@ -1,3 +1,6 @@
+(defvar ea-popup-hook nil
+  "Functions run after Emacs Anywhere creates a new frame and buffer.")
+
 (defvar ea-on t)
 (defvar ea-paste t)
 
@@ -39,15 +42,13 @@
   (add-hook 'delete-frame-functions 'ea--delete-frame-handler)
   (switch-to-buffer ea--buffer-name)
   (select-frame-set-input-focus (selected-frame))
-  ;; run hook if defined
-  (when (boundp 'ea-popup-hook)
-    (run-hook-with-args 'ea-popup-hook
-                        ea-app-name
-                        ea-window-title
-                        ea-x
-                        ea-y
-                        ea-width
-                        ea-height)))
+  (run-hook-with-args 'ea-popup-hook
+                      ea-app-name
+                      ea-window-title
+                      ea-x
+                      ea-y
+                      ea-width
+                      ea-height))
 
 (ea--init)
 
