@@ -59,11 +59,3 @@ Functions are run with args APP-NAME WINDOW-TITLE X Y WIDTH HEIGHT")
                       ea-height))
 
 (ea--init)
-
-(defun popup-handler (app-name window-title x y width height)
-  (set-frame-position (selected-frame) x y)
-  (unless (zerop width)
-    (set-frame-size (selected-frame) width 400))
-  (cond
-   ((equal s "Google Chome") (markdown-mode))
-   (t nil)))
