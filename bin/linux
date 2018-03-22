@@ -1,27 +1,47 @@
 #!/bin/bash
 
-if [ -z ${EA_SHOULD_COPY+x} ]; then
-    EA_SHOULD_COPY=false
+EA_WINDOW=$( xdotool getactivewindow )
+
+EA_APP_NAME=$( xprop -id $EA_WINDOW WM_CLASS | grep -oE '[^ ]+$' )
+EA_WINDOW_TITLE=$( xprop -id $EA_WINDOW _NET_WM_NAME | cut -d" " -f3- )
+EA_TGEO=$( xwininfo -id $EA_WINDOW |\
+              grep 'Absolute\|Relative\|Width:\|Height:' |\
+              grep -oE '[^ ]+$' )
+EA_GEO=($EA_TGEO)
+
+export EA_APP_NAME
+export EA_WINDOW_TITLE
+if [ "${EA_GEO[0]}" = "${EA_GEO[2]}" ]; then
+    export EA_X="${EA_GEO[0]}"
+else
+    export EA_X=$(expr "${EA_GEO[0]}" - "${EA_GEO[2]}")
 fi
-
-if [ -z ${EA_SHOULD_PASTE+x} ]; then
-    EA_SHOULD_PASTE=true
+if [ "${EA_GEO[1]}" = "${EA_GEO[3]}" ]; then
+    export EA_Y="${EA_GEO[1]}"
+else
+    export EA_Y=$(expr "${EA_GEO[1]}" - "${EA_GEO[3]}")
 fi
+export EA_WIDTH="${EA_GEO[4]}"
+export EA_HEIGHT="${EA_GEO[5]}"
 
-if [ "$EA_SHOULD_COPY" = true ]; then
-    xdotool key --clearmodifiers ctrl+c
+$HOME/.emacs_anywhere/bin/emacstask
+
+if [ ! -f /tmp/eaenv ]; then
+    exit 1
 fi
-
-window=$( xdotool getactivewindow )
-
-. $HOME/.emacs_anywhere/bin/emacstask
 . /tmp/eaenv
+rm /tmp/eaenv
 
 if [ "$EA_ABORT" = true ]; then
     exit 0;
 fi
 
-xdotool windowactivate --sync $window
+if [ "$EA_SHOULD_COPY" = true ]; then
+    xclip -selection clipboard /tmp/eaclipboard
+    rm /tmp/eaclipboard
+fi
+
+xdotool windowactivate --sync $EA_WINDOW
 
 if [ "$EA_SHOULD_PASTE" = true ]; then
     xdotool key --clearmodifiers ctrl+v

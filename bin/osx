@@ -1,30 +1,55 @@
 #!/bin/bash
 
-if [ -z ${EA_SHOULD_COPY+x} ]; then
-    EA_SHOULD_COPY=false
+EA_APP_NAME=$( osascript \
+                   -e 'tell application "System Events"' \
+                   -e 'set frontAppName to name of first application process whose frontmost is true' \
+                   -e 'end tell' \
+                   -e 'return frontAppName' )
+
+EA_WINDOW_TITLE=$( osascript \
+                       -e 'set windowTitle to ""' \
+                       -e 'tell application "System Events"' \
+                       -e 'set frontAppProcess to first application process whose frontmost is true' \
+                       -e 'end tell' \
+                       -e 'tell frontAppProcess' \
+                       -e 'if count of windows > 0 then' \
+                       -e 'set windowTitle to name of front window' \
+                       -e 'end if' \
+                       -e 'end tell' \
+                       -e 'return windowTitle' )
+
+EA_TGEO=$( osascript \
+              -e 'tell application "System Events"' \
+              -e 'set frontWindow to front window of (first application process whose frontmost is true)' \
+              -e 'set windowPosition to (get position of frontWindow)' \
+              -e 'set windowSize to (get size of frontWindow)' \
+              -e 'end tell' \
+              -e 'return windowPosition & windowSize' )
+if [ $? -ne 0 ]; then
+    EA_TGEO="0, 0, 0, 0"
 fi
+IFS=', ' read -r -a EA_GEO <<< "$EA_TGEO"
 
-if [ -z ${EA_SHOULD_PASTE+x} ]; then
-    EA_SHOULD_PASTE=true
+export EA_APP_NAME="\"$EA_APP_NAME\""
+export EA_WINDOW_TITLE="\"$EA_WINDOW_TITLE\""
+export EA_X="${EA_GEO[0]}"
+export EA_Y="${EA_GEO[1]}"
+export EA_WIDTH="${EA_GEO[2]}"
+export EA_HEIGHT="${EA_GEO[3]}"
+
+$HOME/.emacs_anywhere/bin/emacstask
+
+if [ ! -f /tmp/eaenv ]; then
+    exit 1
 fi
-
-if [ "$EA_SHOULD_COPY" = true ]; then
-    osascript -e 'tell application "System Events" to keystroke "c" using command down'
-fi
-
-frontmost_app_name=$( osascript -e 'tell application "System Events"' \
-                                -e 'set aName to name of first application process whose frontmost is true' \
-                                -e 'end tell' \
-                                -e 'aName' )
-
-. $HOME/.emacs_anywhere/bin/emacstask
 . /tmp/eaenv
+rm /tmp/eaenv
 
 if [ "$EA_ABORT" = true ]; then
     exit 0;
 fi
 
-osascript -e "tell application \"$frontmost_app_name\" to activate"
+osascript -e "tell application $EA_APP_NAME to activate"
 
 if [ "$EA_SHOULD_PASTE" = true ]; then
     osascript -e 'tell application "System Events" to keystroke "v" using command down'

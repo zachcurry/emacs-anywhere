@@ -4,10 +4,6 @@ EA_PATH=$HOME/.emacs_anywhere
 
 err () { echo -e "Error: $@" 1>&2; }
 
-if [[ -e $EA_PATH/config ]]; then
-    . $EA_PATH/config
-fi
-
 case $OSTYPE in
     "darwin"*)
         $EA_PATH/bin/osx
