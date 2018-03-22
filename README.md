@@ -5,82 +5,182 @@
   <em>Inspired by</em>
   <a href="https://github.com/cknadler/vim-anywhere">cknadler/vim-anywhere</a>
 </p>
-
 <p align="center">
-  <img src="https://thumbs.gfycat.com/PlumpDeadlyAlpinegoat-size_restricted.gif" width="500px"></img>
-  <h2>What it does</h2>
-  A keyboard shortcut of your choosing creates a temporary frame and buffer. The text is automatically inserted into the application you&apos;re using. Bust your moves on the fly, with fewer keystrokes. Invoke the shortcut with selected text and it will be replaced.
+  <img src="https://thumbs.gfycat.com/HardtofindBelatedAtlanticsharpnosepuffer-size_restricted.gif"
+  width="500px">
+  </img>
+</p>
+<p align="center">
+  Emacs Anywhere provides configurable automation and hooks containing window info, so you can bust moves anywhere in a quick, customizable fashion.
 </p>
 
+**Table of Contents**
+- [Install](#install)
+    - [OS X](#os-x)
+    - [Linux](#install)
+- [Usage](#usage)
+    - [Try It](#try-it)
+    - [Environment](#environment)
+    - [Commands](#commands)
+    - [Variables](#variables)
+    - [Hooks](#hooks)
+    - [Examples](#examples)
+    - [Update](#update)
+    - [Uninstall](#uninstall)
+- [Todo](#todo)
+- [Contributing](#contributing)
+- [License](#license)
 
-
-
-## Install ##
-### OSX ###
-``` bash
+# Install
+## OS X
+``` 
 curl -fsSL https://raw.github.com/zachcurry/emacs-anywhere/master/install | bash
 ```
-Open **System Preferences** and navigate to **keyboard > shortcuts > Services**. Check the box beside "Emacs Anywhere", click "Add Shortcut" and key a shortcut.
+Open **System Preferences** and navigate to **keyboard > shortcuts > Services**.
+Check the box beside "Emacs Anywhere", click "Add Shortcut" and key a shortcut.
 
-### Linux ###
->### dependencies: **xdotool**, **xclip** ###
->Install as needed
->``` bash
->sudo apt-get install xdotool
->```
->``` bash
->sudo apt-get install xclip
->```
->**Wayland** window manager is **not supported**. You can **switch** your window manager in **Ubuntu** by going to the login screen and selecting **Xorg** as your window manager.
+## Linux
+>**Wayland** window manager is **not supported**. You can **switch** your window
+manager in **Ubuntu** by going to the login screen and selecting **Xorg** as
+your window manager.
 
-<p align="center">
-  <img src="https://imgur.com/DrVbpRX.jpg" width="500px"></img>
-</p>
+### dependencies
+Install these dependencies as needed
+- **xclip**
+- **xdotool**
+- **xprop**
+- **xwininfo**
+```
+sudo apt-get install <dependency>
+```
 
-
-#### Installation ####
-
-
-``` bash
+### Install
+``` 
 curl -fsSL https://raw.github.com/zachcurry/emacs-anywhere/master/install | bash
 ```
-Create a keyboard shortcut to run `$HOME/.emacs_anywhere/bin/run`. Google how to create a keyboard shortcut in your distro if you're not sure how to do this.
+Create a keyboard shortcut to run `~/.emacs_anywhere/bin/run`.
 
-### Windows ###
+## Windows
 TBD
 
-## How to ##
-Invoke the shortcut with a running Emacs server. A new frame will be created and display an empty buffer titled `*Emacs Anywhere*`. When the frame is deleted the buffer's content is inserted into the application you're using and the buffer is deleted. Any text selected when the keyboard shortcut is invoked will be replaced.
+# Usage
+## Try It
+1. Make sure your Emacs server is running. You can start the server like this
+```
+emacs --daemon
+```
+2. Focus an application window's text input. A text area in your browser will do.
+3. Key the keyboard shortcut you've chosen for **Emacs Anywhere** 
+4. Write some text
+5. Delete the frame (`C-x 5 0`, or `:q` if you use evil-mode).
+**Emacs Anywhere** will copy the text from the buffer "*Emacs Anywhere*" to clipboard, delete the
+buffer, switch focus to the window from step two and paste the buffers content into the text input.
 
-## Configure ##
-**Emacs Anywhere** keeps it's configurations in `~/.emacs_anywhere/config`. You can use the `EA_EDITOR` variable to control the path used to invoke **emacsclient** as well as the options passed to it. You can also toggle the copy/paste behavior by using the `EA_SHOULD_COPY` and `EA_SHOULD_PASTE` variables. It is important that you place your configurations in the `~/.emacs_anywhere/config` instead of one of your dotfiles, especially if you are using OSX!
+## Environment
+The `EA_EDITOR` environment variable can be used to override the way
+**emacsclient** is run. For example, you could put the following statement into
+your `.bash_profile`.
+```
+export EA_EDITOR='emacsclient -a "" -c'
+```
+With the environment variable set, the invocation will look like this under the
+hood
+```
+emacsclient -a "" -c -e <elisp code>
+```
+You can prefix **emacsclient** with it's path if **Emacs Anywhere** can't find
+it in your `PATH` environment variable.
 
-## Update ##
-``` bash
+## Commands
+| Command       | Description                                                                                  |
+| ----          | -----------                                                                                  |
+| **toggle-ea** | If toggled to the "off" state, **Emacs Anywhere** will do nothing when the frame is deleted. |
+
+## Variables
+| Variable            | Description                                                                                                                 |
+| --------            | -----------                                                                                                                 |
+| **ea-on**           | Boolean where `t` and `nil` denote the "on" and "off** states of **Emacs Anywhere**, respectively. The default value is `t` |
+| **ea-copy**         | If true, when the frame is deleted the "*Emacs Anywhere*" will be copied to clipboard. The default value is `t`          |
+| **ea-paste**        | If true, **Emacs Anywhere** will paste to the window from which it was launched. The default value is `t`                   |
+| **ea-app-name**     | The name of the application process for the window from which **Emacs Anywhere** was launched.                              |
+| **ea-window-title** | The title of the window from which **Emacs Anywhere** was launched.                                                         |
+| **ea-x**            | The x-coordinate of the upper-left corner of the window from which **Emacs Anywhere** was launched.                         |
+| **ea-y**            | The y-coordinate of the upper-left corner of the window from which **Emacs Anywhere** was launched.                         |
+| **ea-width**        | The width of the window from which **Emacs Anywhere** was launched.                                                         |
+| **ea-height**       | The height of the window from which **Emacs Anywhere** was launched.                                                        |
+
+>Note: In OS X the window title, position and size information
+>is only available if the application is has accessiblity permissions enabled.
+
+## Hooks
+| Hook              | Function Signature              | Description                                               |
+| ----              | ------------------              | -----------                                               |
+| **ea-popup-hook** | (app-name window-title x y w h) | Functions run after an **Emacs Anywhere** session starts. |
+
+## Examples
+```elisp
+;; Define a function or use a lambda of the same signature
+(defun popup-handler (app-name window-title x y w h)
+  ;; do stuff
+  )
+
+;; Hook your function
+(add-hook 'ea-popup-hook 'popup-handler)
+```
+In your hook function you can do things like set the major mode based on the
+application name or window title...
+```elisp
+(defun github-conversation-p (window-title)
+  (or (string-match-p "Pull Request" window-title)
+      (string-match-p "Issue" window-title)
+      ;; ...
+      ))
+
+(defun popup-handler (app-name window-title x y w h)
+  ;; set major mode
+  (cond
+    ((github-conversation-p window-title) (gfm-mode))
+    ;; ...
+    (t (markdown-mode)) ; default major mode
+    ))
+```
+...or set the frame size and position to fit the bottom 400px of the window...
+```elisp
+(defun popup-handler (app-name window-title x y w h)
+  (set-frame-position (selected-frame) x (+ y (- h 400)))
+  (unless (zerop w)
+    (set-frame-size (selected-frame) w 400 t))
+  ;; ...
+  )
+```
+...or configure automation settings
+```elisp
+(defun popup-handler (app-name window-title x y w h)
+  (when (equal app-name "Terminal")
+    ;; Tell Emacs Anywhere not to paste if launched from Terminal
+    (setq ea-paste nil))
+  ;; ...
+  )
+```
+
+## Update
+```
 ~/.emacs_anywhere/update
 ```
 
-## Uninstall ##
-``` bash
+## Uninstall
+```
+
 ~/.emacs_anywhere/uninstall
 ```
 
-## Troubleshooting ##
-If **Emacs Anywhere** is not launching double check your keyboard shortcut is set properly and if that looks okay set the `EA_EDITOR` explicitly in `~/.emacs_anywhere/config`.
-
-If you are using Linux and the copy/paste features aren't working as expected, there is a good chance **xdotool** or **xclip** do not work properly in your environment. Soon, we will add some test scripts to the repo to allow you to easily test that these dependencies are working.
-
-If all else fails you can run `~/.emacs_anywhere/bin/run` and read the output. 
-
-## Slow? ##
-If your Emacs server isn't running when you use the keyboard shortcut, **Emacs Anywhere** will try to start it (this is slower). Run Emacs as a daemon (`emacs --daemon`) to start your server from the command line, or use `server-start` command in Emacs. Once you've a got a running server, new frames are created much faster.
-
-## TODO ##
-- Emacs command to toggle **Emacs Anywhere**
-- Homebrew
+# Todo
 - Windows
 
-## Contributing ##
+# Contributing
 TBD
+
+# License
+MIT
 
 Copyright © 2018, Zach Curry, All rights reserved.
