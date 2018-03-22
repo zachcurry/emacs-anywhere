@@ -73,7 +73,7 @@ emacs --daemon
 3. Key the keyboard shortcut you've chosen for **Emacs Anywhere** 
 4. Write some text
 5. Delete the frame (`C-x 5 0`, or `:q` if you use evil-mode).
-**Emacs Anywhere** will copy the text from the buffer "*Emacs Anywhere*" to clipboard, delete the
+**Emacs Anywhere** will copy the text from the buffer "\*Emacs Anywhere\*" to clipboard, delete the
 buffer, switch focus to the window from step two and paste the buffers content into the text input.
 
 ## Environment
