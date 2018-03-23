@@ -100,7 +100,7 @@ it in your `PATH` environment variable.
 | Variable            | Description                                                                                                                 |
 | --------            | -----------                                                                                                                 |
 | **ea-on**           | Boolean where `t` and `nil` denote the "on" and "off** states of **Emacs Anywhere**, respectively. The default value is `t` |
-| **ea-copy**         | If true, when the frame is deleted the "\*Emacs Anywhere\*" will be copied to clipboard. The default value is `t`        |
+| **ea-copy**         | If true, the "\*Emacs Anywhere\*" buffer will be copied to clipboard. The default value is `t` |
 | **ea-paste**        | If true, **Emacs Anywhere** will paste to the window from which it was launched. The default value is `t`                   |
 | **ea-app-name**     | The name of the application process for the window from which **Emacs Anywhere** was launched.                              |
 | **ea-window-title** | The title of the window from which **Emacs Anywhere** was launched.                                                         |
