@@ -40,16 +40,12 @@ Open **System Preferences** and navigate to **keyboard > shortcuts > Services**.
 Check the box beside "Emacs Anywhere", click "Add Shortcut" and key a shortcut.
 
 ## Linux
->**Wayland** window manager is **not supported**. You can **switch** your window
-manager in **Ubuntu** by going to the login screen and selecting **Xorg** as
-your window manager.
+>In order to use **Emacs Anywhere**, you must use **Xorg** as your window manager. You can **switch** your window manager in **Ubuntu** by going to the login screen, clicking the cog icon, and selecting **Xorg**.
 
 ### dependencies
 Install these dependencies as needed
 - **xclip**
 - **xdotool**
-- **xprop**
-- **xwininfo**
 ```
 sudo apt-get install <dependency>
 ```
