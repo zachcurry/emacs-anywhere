@@ -46,6 +46,7 @@ Check the box beside "Emacs Anywhere", click "Add Shortcut" and key a shortcut.
 Install these dependencies as needed
 - **xclip**
 - **xdotool**
+- **xwininfo**
 ```
 sudo apt-get install <dependency>
 ```
