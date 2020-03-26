@@ -44,5 +44,5 @@ fi
 xdotool windowactivate --sync $EA_WINDOW
 
 if [ "$EA_SHOULD_PASTE" = true ]; then
-    xdotool key --clearmodifiers ctrl+v
+    xdotool key --clearmodifiers Shift+Insert
 fi
