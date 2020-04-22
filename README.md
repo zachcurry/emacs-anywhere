@@ -36,8 +36,10 @@
 ``` 
 curl -fsSL https://raw.github.com/zachcurry/emacs-anywhere/master/install | bash
 ```
-Open **System Preferences** and navigate to **keyboard > shortcuts > Services**.
+- Open **System Preferences** and navigate to **keyboard > shortcuts > Services**.
 Check the box beside "Emacs Anywhere", click "Add Shortcut" and key a shortcut.
+
+- Add `Script Editor` (`/Applications/Utilities/Script Editor.app`) to **System Preferences > Security & Privacy > Privacy > Accessibility**
 
 ## Linux
 >In order to use **Emacs Anywhere**, you must use **Xorg** as your window manager. You can **switch** your window manager in **Ubuntu** by going to the login screen, clicking the cog icon, and selecting **Xorg**.
