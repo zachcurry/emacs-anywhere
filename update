@@ -15,12 +15,21 @@ if [ ! -d $EA_PATH ]; then
     exit 1
 fi
 
-pushd $EA_PATH
-git pull origin master
-popd
+pushd $EA_PATH > /dev/null
+echo -ne '\033[0;90m'
+git remote update
+echo -ne '\033[0;37m'
+LAST_UPDATE=`git show --no-notes --format=format:"%H" master | head -n 1`
+LAST_COMMIT=`git show --no-notes --format=format:"%H" origin/master | head -n 1`
 
-if [[ $OSTYPE == "darwin"* ]]; then
-    cp -Rf $EA_PATH/Emacs\ Anywhere.workflow $HOME/Library/Services
+if [ $LAST_COMMIT != $LAST_UPDATE ]; then
+        git pull origin master
+        git pull --no-edit
+        echo -e '\033[0;32mEmacs Anywhere has been updated!\033[0;37m'
+        if [[ $OSTYPE == "darwin"* ]]; then
+            cp -Rf $EA_PATH/Emacs\ Anywhere.workflow $HOME/Library/Services
+        fi
+else
+    echo "No updates available"
 fi
-
-echo Emacs Anywhere has been updated!
+popd > /dev/null
