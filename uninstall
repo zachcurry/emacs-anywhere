@@ -8,10 +8,10 @@ else
     EA_PATH=$HOME/.emacs_anywhere
 fi
 
-err () { echo -e "Error: $@" 1>&2; }
+err () { echo -e "\033[0;31m! $@\033[0;37m" 1>&2; }
 
 if [ ! -d $EA_PATH ]; then
-    err emacs-anywhere is not installed
+    err Emacs Anywhere is not installed
     exit 1
 fi
 
@@ -22,3 +22,4 @@ if [[ $OSTYPE == "darwin"* ]]; then
 fi
 
 echo Emacs Anywhere has been uninstalled!
+echo -e '\033[0;33mEmacs Anywhere has been uninstalled :(\033[0;37m'

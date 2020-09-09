@@ -8,7 +8,7 @@ else
     EA_PATH=$HOME/.emacs_anywhere
 fi
 
-err () { echo -e "Error: $@" 1>&2; }
+err () { echo -e "\033[0;31m! $@\033[0;37m" 1>&2; }
 
 if [ ! -d $EA_PATH ]; then
     err Emacs Anywhere is not installed!

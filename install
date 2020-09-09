@@ -22,13 +22,15 @@ installed () { hash $1 &> /dev/null; }
 require_deps () {
     for d in $@; do
         if installed $d ; then
-            echo dependency check passed: $d
+            echo -e "\033[0;32m  ✓ dependency check passed: $d\033[0;37m"
         else
             err dependency check failed: "'$d'" not found
             exit 1
         fi
     done
 }
+
+echo "> Checking dependancies"
 
 case $OSTYPE in
     "darwin"*)
@@ -47,18 +49,20 @@ esac
 require_deps emacsclient git
 
 if [ -a $EA_PATH ]; then
-    echo 'Uninstalling existing installation...'
+    echo -e '\033[0;33m> Uninstalling existing installation...\033[0;37m'
     rm -rf $EA_PATH
-    echo 'Reinstalling Emacs Anywhere...'
+    echo '> Reinstalling Emacs Anywhere...'
 else
-    echo "Installing Emacs Anywhere..."
+    echo "> Installing Emacs Anywhere..."
 fi
 
+echo -e '\033[0;90m'
 git clone $EA_URL $EA_PATH
+echo -e '\033[0;37m'
 
 if [[ $OSTYPE == "darwin"* ]]; then
-    echo "Copying $WRKFLW_PATH to ${SERVICES_PATH}..."
+    echo "> Copying $WRKFLW_PATH to ${SERVICES_PATH}..."
     cp -Rf "${WRKFLW_PATH}" $SERVICES_PATH
 fi
 
-echo Emacs Anywhere has been installed!
+echo -e '\033[0;32mEmacs Anywhere has been installed!\033[0;37m'
