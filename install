@@ -2,6 +2,11 @@
 
 set -e
 
+if [[ $EUID -eq 0 ]]; then
+    echo -e "\033[0;31m! This is not designed to be run as root.\033[0;37m"
+    exit 1
+fi
+
 if [[ $OSTYPE == "linux-gnu" ]]; then
     EA_PATH=${XDG_DATA_HOME:-$HOME/.local/share}/emacs_anywhere
 else
