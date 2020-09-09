@@ -2,7 +2,11 @@
 
 set -e
 
-EA_PATH=$HOME/.emacs_anywhere
+if [[ $OSTYPE == "linux-gnu" ]]; then
+    EA_PATH=${XDG_DATA_HOME:-$HOME/.local/share}/emacs_anywhere
+else
+    EA_PATH=$HOME/.emacs_anywhere
+fi
 
 err () { echo -e "Error: $@" 1>&2; }
 

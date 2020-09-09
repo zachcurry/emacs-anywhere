@@ -1,6 +1,12 @@
 #!/bin/bash
 
-ELISP=$( cat $HOME/.emacs_anywhere/emacs_anywhere.el )
+if [[ $OSTYPE == "linux-gnu" ]]; then
+    EA_PATH=${XDG_DATA_HOME:-$HOME/.local/share}/emacs_anywhere
+else
+    EA_PATH=$HOME/.emacs_anywhere
+fi
+
+ELISP=$( cat $EA_PATH/emacs_anywhere.el )
 
 if [ -z "$EA_EDITOR" ]; then
     EA_EDITOR='emacsclient -a "" -c'
