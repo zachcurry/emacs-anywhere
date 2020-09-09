@@ -21,5 +21,9 @@ if [[ $OSTYPE == "darwin"* ]]; then
    rm -rf $HOME/Library/Services/Emacs\ Anywhere.workflow
 fi
 
-echo Emacs Anywhere has been uninstalled!
+EA_EXEC=${XDG_BIN_HOME:-$HOME/.local/bin}/emacs_anywhere
+if [[ -e $EA_EXEC ]]; then
+    rm $EA_EXEC
+fi
+
 echo -e '\033[0;33mEmacs Anywhere has been uninstalled :(\033[0;37m'

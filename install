@@ -63,6 +63,10 @@ echo -e '\033[0;37m'
 if [[ $OSTYPE == "darwin"* ]]; then
     echo "> Copying $WRKFLW_PATH to ${SERVICES_PATH}..."
     cp -Rf "${WRKFLW_PATH}" $SERVICES_PATH
+elif [[ $OSTYPE == "linux-gnu" ]]; then
+    EA_EXEC=${XDG_BIN_HOME:-$HOME/.local/bin}/emacs_anywhere
+    echo -e "> Symlinking executable to \033[0;34m$EA_EXEC\033[0;37m"
+    ln -sf $EA_PATH/bin/linux $EA_EXEC
 fi
 
 echo -e '\033[0;32mEmacs Anywhere has been installed!\033[0;37m'
