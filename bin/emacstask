@@ -6,7 +6,11 @@ if [ -z "$EA_EDITOR" ]; then
     EA_EDITOR='emacsclient -a "" -c'
 fi
 
-$EA_EDITOR -e "(progn
+if [ -z "$EA_TITLE" ]; then
+    EA_TITLE='emacsanywhere'
+fi
+
+$EA_EDITOR -F "((name . \"$EA_TITLE\"))" -e "(progn
                  (defconst ea-app-name $EA_APP_NAME)
                  (defconst ea-window-title $EA_WINDOW_TITLE)
                  (defconst ea-x $EA_X)
